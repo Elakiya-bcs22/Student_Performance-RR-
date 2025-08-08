@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Course Completion Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(to bottom right, #a8e6a1, #d0f0c0); /* light green gradient */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            width: 380px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2e7d32;
+            margin-bottom: 25px;
+        }
+
+        form input[type="number"] {
+            width: 100%;
+            padding: 10px 12px;
+            margin: 10px 0;
+            border: 1px solid #b2dfdb;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        form input[type="number"]:focus {
+            border-color: #66bb6a;
+            box-shadow: 0 0 6px rgba(102, 187, 106, 0.4);
+            outline: none;
+        }
+
+        form input[type="submit"] {
+            background-color: #43a047;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #388e3c;
+        }
+
+        h3 {
+            margin-top: 25px;
+            color: #1b5e20;
+        }
+
+        @media (max-width: 420px) {
+            .container {
+                width: 90%;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Predict Student Course Completion</h2>
+        <form method="post" action="/predict">
+            <input type="number" name="hours_per_week" placeholder="Hours per week studying" step="0.1" required>
+            <input type="number" name="num_assignments" placeholder="Number of assignments completed" required>
+            <input type="number" name="discussion_posts" placeholder="Number of discussion posts" required>
+            <input type="number" name="video_watched" placeholder="Videos watched" required>
+            <input type="number" name="logins" placeholder="Platform logins" required>
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction_text %}
+            <h3>{{ prediction_text }}</h3>
+        {% endif %}
+    </div>
+
+</body>
+</html>
